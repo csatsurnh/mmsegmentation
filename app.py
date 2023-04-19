@@ -42,7 +42,7 @@ def main(input):
     # show the results
     output = show_result_pyplot(
         model,
-        args.img,
+        input,
         result,
         title=args.title,
         opacity=args.opacity,
