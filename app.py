@@ -21,7 +21,7 @@ def inference(input):
     # parser.add_argument('img', help='Image file')
     parser.add_argument('--config', default='configs/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes.py', help='Config file') #noqa
     parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes/pidnet-l_2xb6-120k_1024x1024-cityscapes_20230303_114514-0783ca6b.pth', help='Checkpoint file') #noqa
-    parser.add_argument('--out-file', default='', help='Path to output file')
+    parser.add_argument('--out-file', default=None, help='Path to output file')
     parser.add_argument(
         '--device', default='cuda:0', help='Device used for inference')
     parser.add_argument(
@@ -47,7 +47,7 @@ def inference(input):
         title=args.title,
         opacity=args.opacity,
         draw_gt=False,
-        show=False if args.out_file is not None else True,
+        show=False,
         out_file=args.out_file) 
     return output
 
