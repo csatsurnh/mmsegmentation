@@ -16,7 +16,7 @@ from mmengine.model import revert_sync_batchnorm
 from mmseg.apis import inference_model, init_model, show_result_pyplot
 
 
-def main(input):
+def inference(input):
     parser = ArgumentParser()
     # parser.add_argument('img', help='Image file')
     parser.add_argument('--config', default='configs/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes.py', help='Config file') #noqa
