@@ -19,8 +19,8 @@ from mmseg.apis import inference_model, init_model, show_result_pyplot
 def inference(input):
     parser = ArgumentParser()
     # parser.add_argument('img', help='Image file')
-    parser.add_argument('--config', default='configs/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes_app.py', help='Config file') #noqa
-    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes/pidnet-l_2xb6-120k_1024x1024-cityscapes_20230303_114514-0783ca6b.pth', help='Checkpoint file') #noqa
+    parser.add_argument('--config', default='configs/segformer/segformer_mit-b5_8xb2-160k_ade20k-640x640.py', help='Config file') #noqa
+    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b5_640x640_160k_ade20k/segformer_mit-b5_640x640_160k_ade20k_20210801_121243-41d2845b.pth', help='Checkpoint file') #noqa
     parser.add_argument('--out-file', default=None, help='Path to output file')
     parser.add_argument(
         '--device', default='cuda:0', help='Device used for inference')
