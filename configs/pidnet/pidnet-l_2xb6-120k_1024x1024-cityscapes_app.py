@@ -1,5 +1,6 @@
 _base_ = './pidnet-s_2xb6-120k_1024x1024-cityscapes.py'
 checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/pidnet/pidnet-l_imagenet1k_20230306-67889109.pth'  # noqa
+data_preprocessor = dict(test_cfg=dict(size_divisor=8))
 model = dict(
     backbone=dict(
         channels=64,
