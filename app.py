@@ -60,7 +60,7 @@ def inference(input):
     parser = ArgumentParser()
     # parser.add_argument('img', help='Image file')
     parser.add_argument('--model', default='configs/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes.py', help='Config file') #noqa
-    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes/pidnet-l_2xb6-120k_1024x1024-cityscapes_20230303_114514-0783ca6b.pth', default=None, help='Checkpoint file') #noqa
+    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes/pidnet-l_2xb6-120k_1024x1024-cityscapes_20230303_114514-0783ca6b.pth', help='Checkpoint file') #noqa
     parser.add_argument(
         '--out-dir', default='', help='Path to save result file')
     parser.add_argument(
