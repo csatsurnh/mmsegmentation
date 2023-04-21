@@ -35,7 +35,10 @@ param_scheduler = [
 ]
 
 test_pipeline = [
-    dict(type='Resize', scale=(512, 512), keep_ratio=True)
+    dict(type='LoadImageFromFile'),
+    dict(type='Resize', scale=(512, 512), keep_ratio=True),
+    dict(type='LoadAnnotations', reduce_zero_label=True),
+    dict(type='PackSegInputs')
 ]
 
 train_dataloader = dict(batch_size=2, num_workers=2)
