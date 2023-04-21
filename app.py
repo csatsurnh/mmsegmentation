@@ -53,6 +53,8 @@ def inference(input):
 
 gr.Interface(
     fn=inference,
+    title='MMSegmentation Demo',
+    description=('Note: Due to the limited resources of GPU, we recommend using images under 2048x2048'), #noqa
     inputs=gr.Image(type='numpy'),
     outputs=gr.Image(type='pil'),
     examples=['demo/demo.png']
