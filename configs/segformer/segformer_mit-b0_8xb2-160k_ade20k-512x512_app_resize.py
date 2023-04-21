@@ -36,7 +36,11 @@ param_scheduler = [
 
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(512, 512), keep_ratio=True),
+    dict(
+        type='RandomChoiceResize',
+        scales=[512],
+        resize_type='ResizeShortestEdge',
+        max_size=2048),
     dict(type='LoadAnnotations', reduce_zero_label=True),
     dict(type='PackSegInputs')
 ]
