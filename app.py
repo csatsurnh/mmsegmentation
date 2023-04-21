@@ -21,7 +21,6 @@ def inference(input):
     parser = ArgumentParser()
     # parser.add_argument('img', help='Image file')
     parser.add_argument('--config', default='configs/segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512_app_resize.py', help='Config file') #noqa
-    # parser.add_argument('--config_resize', default='configs/segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512_app_resize.py', help='Resize Config file') #noqa
     parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b0_512x512_160k_ade20k/segformer_mit-b0_512x512_160k_ade20k_20210726_101530-8ffa8fda.pth', help='Checkpoint file') #noqa
     parser.add_argument('--out-file', default=None, help='Path to output file')
     parser.add_argument(
@@ -36,22 +35,18 @@ def inference(input):
     args = parser.parse_args()
 
     cfg = Config.fromfile(args.config)
+    print(cfg.test_pipeline[1]['img_scale'])
     if input.shape[0] * input.shape[1] > 2048 * 2048:
         cfg.test_pipeline[1]['img_scale'] = (512, 512)
+    print(cfg.test_pipeline[1]['img_scale'])
 
     # build the model from a config file and a checkpoint file
     model = init_model(args.config, args.checkpoint, device=args.device)
-    # model_resize = init_model(args.config_resize, args.checkpoint, device=args.device)
     if args.device == 'cpu':
         model = revert_sync_batchnorm(model)
-        # model_resize = revert_sync_batchnorm(model_resize)
     # test a single image
     result = inference_model(model, input)
-    # try:
-    #     result = inference_model(model, input)
-    # except RuntimeError:
-    #     result = inference_model(model_resize, input)
-    # show the results
+
     output = show_result_pyplot(
         model,
         input,
