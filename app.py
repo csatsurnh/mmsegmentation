@@ -34,12 +34,6 @@ def inference(input):
         '--title', default='result', help='The image identifier.')
     args = parser.parse_args()
 
-    cfg = Config.fromfile(args.config)
-    print(cfg.test_pipeline[1]['img_scale'])
-    if input.shape[0] * input.shape[1] > 2048 * 2048:
-        cfg.test_pipeline[1]['img_scale'] = (512, 512)
-    print(cfg.test_pipeline[1]['img_scale'])
-
     # build the model from a config file and a checkpoint file
     model = init_model(args.config, args.checkpoint, device=args.device)
     if args.device == 'cpu':
