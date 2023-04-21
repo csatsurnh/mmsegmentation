@@ -19,8 +19,8 @@ from mmseg.apis import inference_model, init_model, show_result_pyplot
 def inference(input):
     parser = ArgumentParser()
     # parser.add_argument('img', help='Image file')
-    parser.add_argument('--config', default='configs/segformer/segformer_mit-b5_8xb2-160k_ade20k-640x640.py', help='Config file') #noqa
-    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b5_640x640_160k_ade20k/segformer_mit-b5_640x640_160k_ade20k_20210801_121243-41d2845b.pth', help='Checkpoint file') #noqa
+    parser.add_argument('--config', default='configs/segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512.py', help='Config file') #noqa
+    parser.add_argument('--checkpoint', default='https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b0_512x512_160k_ade20k/segformer_mit-b0_512x512_160k_ade20k_20210726_101530-8ffa8fda.pth', help='Checkpoint file') #noqa
     parser.add_argument('--out-file', default=None, help='Path to output file')
     parser.add_argument(
         '--device', default='cuda:0', help='Device used for inference')
@@ -38,7 +38,10 @@ def inference(input):
     if args.device == 'cpu':
         model = revert_sync_batchnorm(model)
     # test a single image
-    result = inference_model(model, input)
+    try:
+        result = inference_model(model, input)
+    except RuntimeError:
+        result = inference_model(model.cpu(), input)
     # show the results
     output = show_result_pyplot(
         model,
