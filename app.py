@@ -41,7 +41,9 @@ def inference(input):
     try:
         result = inference_model(model, input)
     except RuntimeError:
-        result = inference_model(model.cpu(), input)
+        args.config = 'configs/segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512_app_resize.py'
+        model = init_model(args.config, args.checkpoint, device=args.device)
+        result = inference_model(model, input)
     # show the results
     output = show_result_pyplot(
         model,
